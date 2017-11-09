@@ -79,6 +79,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Crud.svc" />
+    <Content Include="Script DB\PruebaTecnicaScript.sql" />
     <Content Include="Usuario.svc" />
     <Content Include="Web.config" />
   </ItemGroup>

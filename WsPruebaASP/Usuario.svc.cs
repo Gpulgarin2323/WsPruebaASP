@@ -51,10 +51,11 @@ namespace WsPruebaASP
             }
         }
 
-        public bool GetVerificarUsuario(string[] oent)
+        public DataSet GetVerificarUsuario(string[] oent)
         {
             try
             {
+
 
                 oconectar.Open(); //abrir la base de datos   
                 SqlCommand ocmd = new SqlCommand("Verificar_usuario", oconectar);
@@ -62,15 +63,12 @@ namespace WsPruebaASP
                 ocmd.Parameters.Clear();
                 ocmd.Parameters.AddWithValue("@Usuario", oent[0].ToString());
                 ocmd.Parameters.AddWithValue("@Contrasena", (oent[1]).ToString());
-                ocmd.ExecuteNonQuery();
-                if (ocmd.ExecuteNonQuery() < 0)
-                {
-                    return true;
-                }
-                else
-                {
-                    return false;
-                }
+                ocmd.CommandText = "Verificar_usuario";
+
+                SqlDataAdapter da = new SqlDataAdapter(ocmd);
+                DataSet ds = new DataSet();
+                da.Fill(ds);
+                return ds;
 
             }
             catch (Exception)
